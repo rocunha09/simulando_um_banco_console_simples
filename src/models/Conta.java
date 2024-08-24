@@ -67,7 +67,7 @@ public class Conta {
 
 	public void setSaldo(BigDecimal saldo) {
 		
-		if(saldo.compareTo(BigDecimal.ZERO) <= 0)
+		if(saldo.compareTo(BigDecimal.ZERO) < 0)
 			throw new IllegalArgumentException("valor não pode ser menor ou igual a zero...");
 		
 		this.saldo = saldo;

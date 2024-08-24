@@ -3,31 +3,21 @@ package app;
 import java.util.Scanner;
 
 import services.ContaServiceInMemory;
-import util.Console;
+import util.Constantes;
 import view.Menu;
 
 public class Main {
 
 	public static void main(String[] args) {
-		int clear = 500;
-		int option = -1;
+		int option = 0;
 		Scanner scan = new Scanner(System.in);
 		Menu.defineContaService(new ContaServiceInMemory());
 		
 		while(true) {
-				if(option == -1) {
+				if(option == 0) {
 					option = Menu.menuPrincipal(scan);
 				}
 				
-				if(option == 0) {
-					Console.clearTerminal(clear);
-					Menu.encerrarAplicacao();
-					Console.sleep(2);
-					Console.clearTerminal(clear);
-					scan.close();
-					System.exit(0);
-				}
-
 				if(option == 1) {
 					option = Menu.criarConta(scan);
 				
@@ -48,16 +38,14 @@ public class Main {
 				
 				}
 				
-				if(option < 0 || option > 4) {
-					Console.clearTerminal(clear);
-					System.out.println("Opção inválida, digite novamente...");
-					option = -1;
-					Console.sleep(2);
-					Console.clearTerminal(clear);
+				if(option == 5) {
+					Menu.encerrarAplicacao(scan);
 				}
-			
-		} 
-
+				
+				if(option < 0 || option > 5) {
+					option = Menu.exibeMensagem(Constantes.MSG_01);
+				}
+				
+		}
 	}
-	
 }
